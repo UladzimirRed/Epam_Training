@@ -4,12 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TextComposite implements TextComponent {
-    private static final String TABULATION = "\t";
-    private static final String LINE_FEED = "\n";
-    private static final String SPACE = "\u0020";
-
     private List<TextComponent> components = new ArrayList<>();
     private ComponentType type;
+    private static boolean isOutputText = true;
 
     public TextComposite() {
     }
@@ -35,6 +32,11 @@ public class TextComposite implements TextComponent {
     }
 
     @Override
+    public void setIsOutputText(boolean isReading) {
+        isOutputText = isReading;
+    }
+
+    @Override
     public ComponentType getComponentType() {
         return this.type;
     }
@@ -56,11 +58,23 @@ public class TextComposite implements TextComponent {
     }
 
     @Override
-    public String toString() {                                                               //FIXME override toString
-        final StringBuilder sb = new StringBuilder("TextComposite{");
-        sb.append("components=").append(components);
-        sb.append(", type=").append(type);
-        sb.append('}');
-        return sb.toString();
+    public String toString() {                                      // FIXME
+        StringBuilder stringBuilder = new StringBuilder();
+        for (TextComponent component : components) {
+            stringBuilder.append(component.toString());
+        }
+        if (type == ComponentType.EXPRESSION && isOutputText) {
+            stringBuilder.delete(0, stringBuilder.length());
+            stringBuilder.append(" ");
+        } else {
+            if (type == ComponentType.SENTENCE) {
+                stringBuilder.append("\n");
+            } else {
+                if (type == ComponentType.WORD && isOutputText) {
+                    stringBuilder.append(" ");
+                }
+            }
+        }
+        return stringBuilder.toString();
     }
 }

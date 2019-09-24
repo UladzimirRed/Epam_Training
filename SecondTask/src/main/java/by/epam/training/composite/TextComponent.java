@@ -14,5 +14,8 @@ public interface TextComponent {
     default void remove(TextComponent component) {
     }
 
+    default void setIsOutputText(boolean isOutputText) {
+    }
+
     ComponentType getComponentType();
 }

@@ -1,5 +1,6 @@
 package by.epam.training.xxx;
 
+import by.epam.training.action.TextFunctionality;
 import by.epam.training.reader.FileReader;
 
 public class Main {
@@ -7,6 +8,6 @@ public class Main {
         FileReader reader = new FileReader();
         String text = reader.readTextFromFile("/data/data.txt");
         System.out.println(text);
-
+        TextFunctionality textFunctionality = new TextFunctionality();
     }
 }

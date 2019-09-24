@@ -1,1 +1,11 @@
 22:34:06.212 INFO  by.epam.training.reader.FileReader - Reading file was successful
+21:05:18.550 INFO  by.epam.training.reader.FileReader - Reading file was successful
+21:06:02.230 INFO  by.epam.training.reader.FileReader - Reading file was successful
+21:06:36.627 INFO  by.epam.training.reader.FileReader - Reading file was successful
+21:07:22.817 INFO  by.epam.training.reader.FileReader - Reading file was successful
+21:14:22.827 INFO  by.epam.training.action.TextFunctionality - Sorting paragraphs by number of sentences ended successful
+21:14:22.880 INFO  by.epam.training.action.TextFunctionality - Sorting lexemes in text by number of entrance of some symbol ended successful
+21:14:22.928 INFO  by.epam.training.action.TextFunctionality - Sorting words in every sentence by length of word ended successful
+21:20:37.027 INFO  by.epam.training.action.TextFunctionality - Sorting paragraphs by number of sentences ended successful
+21:20:37.052 INFO  by.epam.training.action.TextFunctionality - Sorting lexemes in text by number of entrance of some symbol ended successful
+21:20:37.062 INFO  by.epam.training.action.TextFunctionality - Sorting words in every sentence by length of word ended successful

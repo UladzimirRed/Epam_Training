@@ -1,28 +1,25 @@
 package by.epam.training.composite;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.LinkedList;
+import java.util.stream.Collectors;
 
 public class TextComposite implements TextComponent {
-    private List<TextComponent> components = new ArrayList<>();
+    private LinkedList<TextComponent> components;
     private ComponentType type;
-    private static boolean isOutputText = true;
-
-    public TextComposite() {
-    }
 
     public TextComposite(ComponentType currentType) {
         this.type = currentType;
+        this.components = new LinkedList<>();
     }
 
     @Override
-    public List<TextComponent> getComponents() {
+    public LinkedList<TextComponent> selectList() {
         return components;
     }
 
     @Override
-    public void add(TextComponent component, ComponentType currentType) {
-        this.type = currentType;
+    public void add(TextComponent component) {
         components.add(component);
     }
 
@@ -32,49 +29,52 @@ public class TextComposite implements TextComponent {
     }
 
     @Override
-    public void setIsOutputText(boolean isReading) {
-        isOutputText = isReading;
+    public TextComponent getChild(int index) {
+        return components.get(index);
     }
 
     @Override
-    public ComponentType getComponentType() {
-        return this.type;
+    public ComponentType checkType() {
+        return type;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+
         TextComposite that = (TextComposite) o;
-        if (!components.equals(that.components)) return false;
+
+        if (components != null ? !components.equals(that.components) : that.components != null) return false;
         return type == that.type;
     }
 
     @Override
     public int hashCode() {
-        int result = components.hashCode();
-        result = 31 * result + type.hashCode();
+        int result = components != null ? components.hashCode() : 0;
+        result = 31 * result + (type != null ? type.hashCode() : 0);
         return result;
     }
 
     @Override
-    public String toString() {                                      // FIXME
-        StringBuilder stringBuilder = new StringBuilder();
-        for (TextComponent component : components) {
-            stringBuilder.append(component.toString());
-        }
-        if (type == ComponentType.EXPRESSION && isOutputText) {
-            stringBuilder.delete(0, stringBuilder.length());
-            stringBuilder.append(" ");
-        } else {
-            if (type == ComponentType.SENTENCE) {
-                stringBuilder.append("\n");
-            } else {
-                if (type == ComponentType.WORD && isOutputText) {
-                    stringBuilder.append(" ");
-                }
+    public String toString() {
+        ArrayList<String> strings = new ArrayList<>();
+        if (type == ComponentType.LEXEME || type == ComponentType.SENTENCE
+                || type == ComponentType.PARAGRAPH || type == ComponentType.TEXT) {
+
+            for (TextComponent textDataComponent : components) {
+                strings.add(textDataComponent.toString());
             }
+            return strings.stream()
+                    .map(Object::toString)
+                    .collect(Collectors.joining(" "));
+        } else {
+            for (TextComponent textDataComponent : components) {
+                strings.add(textDataComponent.toString());
+            }
+            return strings.stream()
+                    .map(Object::toString)
+                    .collect(Collectors.joining());
         }
-        return stringBuilder.toString();
     }
 }

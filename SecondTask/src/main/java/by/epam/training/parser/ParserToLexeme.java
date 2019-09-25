@@ -4,24 +4,22 @@ import by.epam.training.composite.ComponentType;
 import by.epam.training.composite.TextComponent;
 import by.epam.training.composite.TextComposite;
 
-public class ParserToLexeme extends TextParser {
-    private static final ParserToLexeme INSTANCE = new ParserToLexeme();
+import java.util.regex.Pattern;
 
-    public static ParserToLexeme getInstance() {
-        return INSTANCE;
-    }
 
-    public ParserToLexeme() {
-        setTextParser(ParserToWordAndExpression.getInstance());
-    }
+public class ParserToLexeme implements SourceParsable<String, TextComponent> {
+    private static final String LEXEME_DIVIDER = "(?>\\s)";
+    private static final String NOT_WORD = "(\\p{Punct}*?\\d+?\\p{Punct}*?)+?\\s*";
+    private SourceParsable<String, TextComponent> nextParser = new ParserToWord();
 
     @Override
-    public TextComponent parse(TextComponent currentTextComponent, String text) {
-        String[] array = text.split("\\s+");
-        for (int i = 0; i < array.length; i++) {
-            TextComposite lexeme = new TextComposite(ComponentType.LEXEME);
-            currentTextComponent.add(getTextParser().parse(lexeme, array[i]), ComponentType.LEXEME);
+    public TextComponent parseText(String data) {
+        String[] lexemes = data.split(LEXEME_DIVIDER);
+        TextComponent textComponent = new TextComposite(ComponentType.LEXEME);
+        Pattern pattern = Pattern.compile(NOT_WORD);
+        for (String lexeme : lexemes) {
+            textComponent.add(nextParser.parseText(lexeme));
         }
-        return currentTextComponent;
+        return textComponent;
     }
 }

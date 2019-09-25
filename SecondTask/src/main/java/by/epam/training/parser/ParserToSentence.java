@@ -3,30 +3,24 @@ package by.epam.training.parser;
 import by.epam.training.composite.ComponentType;
 import by.epam.training.composite.TextComponent;
 import by.epam.training.composite.TextComposite;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-public class ParserToSentence extends TextParser {
-    private static final String REGULAR_EXPRESSION = ".*?([!?]|[.]+)";
-    private Pattern pattern = Pattern.compile(REGULAR_EXPRESSION);
-    private static ParserToSentence INSTANCE = new ParserToSentence();
-
-    public static ParserToSentence getInstance() {
-        return INSTANCE;
-    }
-
-    private ParserToSentence() {
-        setTextParser(ParserToLexeme.getInstance());
-    }
+public class ParserToSentence implements SourceParsable<String,TextComponent> {
+    private static final String SENTENCE_REG = "(?<=[.?!…])";
+    private static Logger logger = LogManager.getLogger(ParserToSentence.class);
+    private SourceParsable<String,TextComponent> nextParser = new ParserToLexeme();
 
     @Override
-    public TextComponent parse(TextComponent currentTextComponent, String text) {
-        Matcher matcher = pattern.matcher(text);
-        while (matcher.find()) {
-            TextComposite sentence = new TextComposite(ComponentType.SENTENCE);
-            currentTextComponent.add(getTextParser().parse(sentence, matcher.group()), ComponentType.SENTENCE);
+    public TextComponent parseText(String data) {
+        String[] sentences = data.split(SENTENCE_REG);
+        TextComponent textDataComponent = new TextComposite(ComponentType.SENTENCE);
+        for (String sentence : sentences
+        ) {
+            logger.debug(sentence);
+            textDataComponent.add(nextParser.parseText(sentence));
         }
-        return currentTextComponent;
+        logger.debug(textDataComponent);
+        return textDataComponent;
     }
 }

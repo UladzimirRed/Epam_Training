@@ -1,21 +1,16 @@
 package by.epam.training.composite;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.LinkedList;
 
 public interface TextComponent {
-    default List<TextComponent> getComponents() {
-        return new ArrayList<>();
-    }
 
-    default void add(TextComponent component, ComponentType type) {
-    }
+    LinkedList<TextComponent> selectList();
 
-    default void remove(TextComponent component) {
-    }
+    void add(TextComponent component);
 
-    default void setIsOutputText(boolean isOutputText) {
-    }
+    void remove(TextComponent component);
 
-    ComponentType getComponentType();
+    TextComponent getChild(int index);
+
+    ComponentType checkType();
 }

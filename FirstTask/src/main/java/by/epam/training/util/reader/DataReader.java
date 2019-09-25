@@ -14,15 +14,15 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class FileReader {
-    private static final Logger logger = LogManager.getLogger(FileReader.class);
+public class DataReader {
+    private static final Logger logger = LogManager.getLogger(DataReader.class);
 
-    public List<String> read(String pathToFile) throws Exception {
+    public List<String> read(String pathToFile) throws ProjectException {
         if (pathToFile == null) {
             throw new ProjectException("Null path to file in read method.");
         }
         List<String> ellipsesList;
-        Path path = Paths.get(getClass().getResource(pathToFile).toURI());
+        Path path = Paths.get(String.valueOf(getClass().getResource(pathToFile)));
         try (Stream<String> lineStream = Files.newBufferedReader(path).lines()) {
             ellipsesList = lineStream.collect(Collectors.toList());
             if (ellipsesList.isEmpty()) {

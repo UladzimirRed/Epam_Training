@@ -1,11 +1,12 @@
-22:34:06.212 INFO  by.epam.training.reader.FileReader - Reading file was successful
-21:05:18.550 INFO  by.epam.training.reader.FileReader - Reading file was successful
-21:06:02.230 INFO  by.epam.training.reader.FileReader - Reading file was successful
-21:06:36.627 INFO  by.epam.training.reader.FileReader - Reading file was successful
-21:07:22.817 INFO  by.epam.training.reader.FileReader - Reading file was successful
-21:14:22.827 INFO  by.epam.training.action.TextFunctionality - Sorting paragraphs by number of sentences ended successful
-21:14:22.880 INFO  by.epam.training.action.TextFunctionality - Sorting lexemes in text by number of entrance of some symbol ended successful
-21:14:22.928 INFO  by.epam.training.action.TextFunctionality - Sorting words in every sentence by length of word ended successful
-21:20:37.027 INFO  by.epam.training.action.TextFunctionality - Sorting paragraphs by number of sentences ended successful
-21:20:37.052 INFO  by.epam.training.action.TextFunctionality - Sorting lexemes in text by number of entrance of some symbol ended successful
-21:20:37.062 INFO  by.epam.training.action.TextFunctionality - Sorting words in every sentence by length of word ended successful
+22:22:17.202 INFO  by.epam.training.reader.DataReader - Reading file was successful
+22:22:17.240 INFO  by.epam.training.reader.DataReader - Reading file was successful
+22:22:17.423 INFO  by.epam.training.action.TextFunctionalityTest - Actual sort lexemes in sentences by symbol e appearance was successful
+22:22:17.429 INFO  by.epam.training.reader.DataReader - Reading file was successful
+22:22:17.440 INFO  by.epam.training.reader.DataReader - Reading file was successful
+22:22:17.447 INFO  by.epam.training.action.TextFunctionalityTest - sort paragraphs by sentence quantity was successful
+22:22:17.451 INFO  by.epam.training.reader.DataReader - Reading file was successful
+22:22:17.473 INFO  by.epam.training.reader.DataReader - Reading file was successful
+22:22:17.478 INFO  by.epam.training.action.TextFunctionalityTest - Actual sort lexemes in sentence by length was successful
+22:22:17.480 INFO  by.epam.training.reader.DataReader - Reading file was successful
+22:22:17.497 INFO  by.epam.training.reader.DataReader - Reading file was successful
+22:22:17.532 INFO  by.epam.training.action.TextFunctionalityTest - Actual sort words in sentence by length was successful

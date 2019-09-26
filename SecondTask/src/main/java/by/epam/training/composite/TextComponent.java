@@ -4,7 +4,7 @@ import java.util.LinkedList;
 
 public interface TextComponent {
 
-    LinkedList<TextComponent> selectList();
+    LinkedList<TextComponent> getComponents();
 
     void add(TextComponent component);
 
@@ -12,5 +12,5 @@ public interface TextComponent {
 
     TextComponent getChild(int index);
 
-    ComponentType checkType();
+    ComponentType getType();
 }

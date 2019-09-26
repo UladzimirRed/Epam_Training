@@ -1,9 +1,9 @@
 package by.epam.training.composite;
 
 import java.util.LinkedList;
-import java.util.List;
 
 public class TextElement implements TextComponent {
+    private static final LinkedList<TextComponent> ELEMENT_COMPONENTS_MOCK = new LinkedList<>();
     private ElementType elementType;
     private char element;
 
@@ -29,8 +29,8 @@ public class TextElement implements TextComponent {
     }
 
     @Override
-    public LinkedList<TextComponent> selectList() {
-        throw new UnsupportedOperationException();
+    public LinkedList<TextComponent> getComponents() {
+        return ELEMENT_COMPONENTS_MOCK;
     }
 
     @Override
@@ -49,7 +49,7 @@ public class TextElement implements TextComponent {
     }
 
     @Override
-    public ComponentType checkType() {
+    public ComponentType getType() {
         throw new UnsupportedOperationException();
     }
 
@@ -69,5 +69,10 @@ public class TextElement implements TextComponent {
         int result = elementType != null ? elementType.hashCode() : 0;
         result = 31 * result + (int) element;
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return String.valueOf(element);
     }
 }

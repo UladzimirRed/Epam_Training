@@ -28,7 +28,7 @@ public class DataReader {
             throw new DataReaderException("Path argument is null");
         }
         try (Stream<String> lineStream = Files.lines(path)) {
-            text = lineStream.collect(Collectors.joining());
+            text = lineStream.collect(Collectors.joining("\r\n"));
             logger.info("Reading file was successful");
             if (text.isEmpty()) {
                 logger.error("List is empty! Please, check your data!");

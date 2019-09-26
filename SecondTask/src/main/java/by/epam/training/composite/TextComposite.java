@@ -2,7 +2,6 @@ package by.epam.training.composite;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.stream.Collectors;
 
 public class TextComposite implements TextComponent {
     private LinkedList<TextComponent> components;
@@ -14,7 +13,7 @@ public class TextComposite implements TextComponent {
     }
 
     @Override
-    public LinkedList<TextComponent> selectList() {
+    public LinkedList<TextComponent> getComponents() {
         return components;
     }
 
@@ -34,7 +33,7 @@ public class TextComposite implements TextComponent {
     }
 
     @Override
-    public ComponentType checkType() {
+    public ComponentType getType() {
         return type;
     }
 
@@ -59,22 +58,20 @@ public class TextComposite implements TextComponent {
     @Override
     public String toString() {
         ArrayList<String> strings = new ArrayList<>();
-        if (type == ComponentType.LEXEME || type == ComponentType.SENTENCE
-                || type == ComponentType.PARAGRAPH || type == ComponentType.TEXT) {
-
-            for (TextComponent textDataComponent : components) {
-                strings.add(textDataComponent.toString());
-            }
-            return strings.stream()
-                    .map(Object::toString)
-                    .collect(Collectors.joining(" "));
-        } else {
-            for (TextComponent textDataComponent : components) {
-                strings.add(textDataComponent.toString());
-            }
-            return strings.stream()
-                    .map(Object::toString)
-                    .collect(Collectors.joining());
+        StringBuilder sb = new StringBuilder();
+        for (TextComponent textDataComponent : components) {
+            strings.add(textDataComponent.toString());
         }
+        if (ComponentType.PARAGRAPH.equals(type)) {
+            strings.add("\r\n");
+        }
+        if (ComponentType.LEXEME.equals(type)) {
+            strings.add(" ");
+        }
+        for (String string : strings) {
+            sb.append(string);
+        }
+
+        return sb.toString().replaceAll(" +\r\n", "\r\n").replaceAll(" +", " ");
     }
 }

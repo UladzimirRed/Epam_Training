@@ -2,6 +2,7 @@ package by.epam.training.action;
 
 import by.epam.training.composite.ComponentType;
 import by.epam.training.composite.TextComponent;
+import by.epam.training.composite.TextComposite;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
@@ -25,21 +26,6 @@ public class TextFunctionality {
         }
     }
 
-    public String sortSentencesByLexemeSize(TextComponent component) {
-        StringBuffer stringBuffer = new StringBuffer();
-        if (component.getType().equals(ComponentType.LEXEME)) {
-            return component.getComponents().stream()
-                    .map(TextComponent::toString)
-                    .sorted((o1, o2) -> o2.length() - o1.length())
-                    .collect(Collectors.joining(" "));
-        } else {
-            for (int i = 0; i < component.getComponents().size(); i++) {
-                stringBuffer.append(sortSentencesByLexemeSize(component.getChild(i)));
-            }
-        }
-        return stringBuffer.toString();
-    }
-
     public void sortSentencesByNumberOfWords(TextComponent component) {
         if (component.getType().equals(ComponentType.PARAGRAPH)) {
             component.getComponents().sort(Comparator.comparing(sentence -> sentence.getComponents().size()));
@@ -53,39 +39,20 @@ public class TextFunctionality {
         }
     }
 
-    private int countSymbolAppearance(TextComponent lexeme, char symbol) {
-        return lexeme.getComponents().stream()
-                .mapToInt(word -> (int) word.getComponents()
-                        .stream()
-                        .filter(leaf -> leaf.toString().charAt(0) == (symbol))
-                        .count())
-                .sum();
-    }
-
-    public String sortLexemesInSentencesBySymbolQuantity(TextComponent component, char symbol) {
-        StringBuffer stringBuffer = new StringBuffer();
-        if (component.getType().equals(ComponentType.LEXEME)) {
-            ArrayList<TextComponent> temp = new ArrayList<>(component.getComponents());
-            logger.debug(temp);
-            for (int i = 0; i < temp.size(); i++) {
-                TextComponent lexeme = temp.get(i);
-                int k = countSymbolAppearance(lexeme, symbol);
-                Comparator<TextComponent> comparator;
-                comparator = Comparator.comparing(comp -> k - TextFunctionality.this.countSymbolAppearance(comp, symbol));
-                comparator = comparator.thenComparing(Object::toString);
-                temp.sort(comparator);
-            }
-            logger.debug(temp);
-            return temp.stream()
-                    .map(TextComponent::toString)
-                    .collect(Collectors.joining(" "));
-        } else {
-            for (int i = 0; i < component.getComponents().size(); i++) {
-
-                stringBuffer.append(sortLexemesInSentencesBySymbolQuantity(component.getChild(i), symbol));
+    public void sortWordsBySize(TextComponent component) {
+        if (component.getType().equals(ComponentType.SENTENCE)) {
+            component.getComponents().sort(
+                    Comparator.comparing(lexeme -> lexeme.getComponents().stream()
+                            .filter(element -> element instanceof TextComposite)
+                            .findFirst().toString().length()));
+            return;
+        }
+        List<TextComponent> children = component.getComponents();
+        if (children != null && !children.isEmpty()) {
+            for (TextComponent child : children) {
+                sortWordsBySize(child);
             }
         }
-        return stringBuffer.toString();
     }
 
 }

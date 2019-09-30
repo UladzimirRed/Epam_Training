@@ -1,58 +1,68 @@
 package by.epam.training.action;
 
-import by.epam.training.composite.ComponentType;
-import by.epam.training.composite.TextComponent;
-import by.epam.training.composite.TextComposite;
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
+import by.epam.training.composite.*;
+import by.epam.training.reader.DataReader;
+import by.epam.training.util.LexemeComparator;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 
 public class TextFunctionality {
-    private static Logger logger = LogManager.getLogger(TextFunctionality.class);
+    private static final Logger logger = LogManager.getLogger(DataReader.class);
 
-    public void sortParagraphsBySentenceQuantity(TextComponent component) {
-        if (component.getType().equals(ComponentType.TEXT)) {
-            component.getComponents().sort(Comparator.comparingInt(o -> o.getComponents().size()));
-            return;
+    public TextComposite sortParagraphsBySentenceQuantity(TextComposite textComposite) {
+        TextComposite sortedTextComposite = new TextComposite(ComponentType.TEXT);
+
+        if (textComposite.getType().equals(ComponentType.TEXT)) {
+            List<TextComponent> paragraphs = textComposite.getComponents();
+
+            List<TextComponent> sortedParagraphs = new ArrayList<>(paragraphs);
+            sortedParagraphs.sort(Comparator.comparingInt(comp -> comp.getComponents().size()));
+
+            sortedTextComposite.addAll(sortedParagraphs);
         }
-        List<TextComponent> children = component.getComponents();
-        if (children != null && !children.isEmpty()) {
-            for (TextComponent child : children) {
-                sortParagraphsBySentenceQuantity(child);
-            }
-        }
+        logger.info("Paragraphs sorted by the number of sentences");
+        return sortedTextComposite;
     }
 
-    public void sortSentencesByNumberOfWords(TextComponent component) {
-        if (component.getType().equals(ComponentType.PARAGRAPH)) {
-            component.getComponents().sort(Comparator.comparing(sentence -> sentence.getComponents().size()));
-            return;
+    public TextComposite sortSentencesByNumberOfWords(TextComposite textComposite) {
+        TextComposite sortedTextComposite = new TextComposite(ComponentType.TEXT);
+
+        List<TextComponent> paragraphs = textComposite.getComponents();
+        for (TextComponent paragraph : paragraphs) {
+            TextComposite paragraphComposite = new TextComposite(ComponentType.PARAGRAPH);
+
+            List<TextComponent> sortedSentences = new ArrayList<>(paragraph.getComponents());
+            sortedSentences.sort(Comparator.comparingInt(sentence -> sentence.getComponents().size()));
+
+            paragraphComposite.addAll(sortedSentences);
+            sortedTextComposite.add(paragraphComposite);
         }
-        List<TextComponent> children = component.getComponents();
-        if (children != null && !children.isEmpty()) {
-            for (TextComponent child : children) {
-                sortSentencesByNumberOfWords(child);
-            }
-        }
+        logger.info("Sentences sorted by the number of words");
+        return sortedTextComposite;
     }
 
-    public void sortWordsBySize(TextComponent component) {
-        if (component.getType().equals(ComponentType.SENTENCE)) {
-            component.getComponents().sort(
-                    Comparator.comparing(lexeme -> lexeme.getComponents().stream()
-                            .filter(element -> element instanceof TextComposite)
-                            .findFirst().toString().length()));
-            return;
-        }
-        List<TextComponent> children = component.getComponents();
-        if (children != null && !children.isEmpty()) {
-            for (TextComponent child : children) {
-                sortWordsBySize(child);
-            }
-        }
-    }
+    public TextComposite sortLexemesByOccurrenceOfSymbolAndThenAlphabetic(TextComponent textComposite, char symbol) {
+        TextComposite sortedTextComposite = new TextComposite(ComponentType.TEXT);
 
+        List<TextComponent> paragraphs = textComposite.getComponents();
+        for (TextComponent paragraph : paragraphs) {
+            TextComposite paragraphComposite = new TextComposite(ComponentType.PARAGRAPH);
+            List<TextComponent> sentences = paragraph.getComponents();
+
+            for (TextComponent sentence : sentences) {
+                TextComposite sentenceComposite = new TextComposite(ComponentType.SENTENCE);
+                List<TextComponent> sortedLexemes = new ArrayList<>(sentence.getComponents());
+
+                sortedLexemes.sort(new LexemeComparator(symbol));
+                sentenceComposite.addAll(sortedLexemes);
+                paragraphComposite.add(sentenceComposite);
+            }
+            sortedTextComposite.add(paragraphComposite);
+        }
+        logger.info("Lexemes sorted by occurrence of symbol '" + symbol + "' and than by alphabet");
+        return sortedTextComposite;
+    }
 }

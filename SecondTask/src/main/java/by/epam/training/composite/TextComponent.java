@@ -1,6 +1,7 @@
 package by.epam.training.composite;
 
 import java.util.LinkedList;
+import java.util.List;
 
 public interface TextComponent {
 
@@ -13,4 +14,6 @@ public interface TextComponent {
     TextComponent getChild(int index);
 
     ComponentType getType();
+
+    void addAll(List<TextComponent> components);
 }

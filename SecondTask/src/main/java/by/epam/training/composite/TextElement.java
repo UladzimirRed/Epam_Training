@@ -1,6 +1,7 @@
 package by.epam.training.composite;
 
 import java.util.LinkedList;
+import java.util.List;
 
 public class TextElement implements TextComponent {
     private static final LinkedList<TextComponent> ELEMENT_COMPONENTS_MOCK = new LinkedList<>();
@@ -50,6 +51,11 @@ public class TextElement implements TextComponent {
 
     @Override
     public ComponentType getType() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void addAll(List<TextComponent> components) {
         throw new UnsupportedOperationException();
     }
 

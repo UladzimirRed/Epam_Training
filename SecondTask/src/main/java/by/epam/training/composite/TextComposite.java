@@ -2,6 +2,7 @@ package by.epam.training.composite;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 
 public class TextComposite implements TextComponent {
     private LinkedList<TextComponent> components;
@@ -20,6 +21,11 @@ public class TextComposite implements TextComponent {
     @Override
     public void add(TextComponent component) {
         components.add(component);
+    }
+
+    @Override
+    public void addAll(List<TextComponent> components) {
+        this.components.addAll(components);
     }
 
     @Override
@@ -58,20 +64,20 @@ public class TextComposite implements TextComponent {
     @Override
     public String toString() {
         ArrayList<String> strings = new ArrayList<>();
-        StringBuilder sb = new StringBuilder();
+        StringBuilder stringBuilder = new StringBuilder();
         for (TextComponent textDataComponent : components) {
             strings.add(textDataComponent.toString());
         }
         if (ComponentType.PARAGRAPH.equals(type)) {
-            strings.add("\r\n");
+            strings.add(0, "    ");
+            strings.add("\n");
         }
         if (ComponentType.LEXEME.equals(type)) {
             strings.add(" ");
         }
         for (String string : strings) {
-            sb.append(string);
+            stringBuilder.append(string);
         }
-
-        return sb.toString().replaceAll(" +\r\n", "\r\n").replaceAll(" +", " ");
+        return stringBuilder.toString();
     }
 }

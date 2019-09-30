@@ -1,9 +1,6 @@
 package by.epam.training.parser;
 
-import by.epam.training.composite.ComponentType;
-import by.epam.training.composite.TextComponent;
-import by.epam.training.composite.TextComposite;
-
+import by.epam.training.composite.*;
 
 public class SentenceParser implements SourceParsable<String, TextComponent> {
     private static final String LEXEME_DIVIDER = "(?>\\s)";

@@ -3,6 +3,7 @@ package by.epam.training.exception;
 public class DataReaderException extends Exception {
     public DataReaderException() {
     }
+
     public DataReaderException(String message) {
         super(message);
     }

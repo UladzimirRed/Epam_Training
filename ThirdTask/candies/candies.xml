@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sweet-stuff xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns="http://www.training.by/candies"
+             xsi:schemaLocation="http://www.training.by/candies candies.xsd">
+
+    <candy candyType="chocolate" stuffed="true" candyId="1">
+        <name>Bounty</name>
+        <energy>250</energy>
+        <ingredients chocolateType="milk">
+            <water>10.0</water>
+            <sugar>2.0</sugar>
+            <vanillin>0.1</vanillin>
+        </ingredients>
+        <energyValue>
+            <proteins>0.5</proteins>
+            <fats>88.0</fats>
+            <carbohydrates>40.0</carbohydrates>
+        </energyValue>
+        <production>
+            <manufactor>Mars</manufactor>
+            <country>United States</country>
+        </production>
+    </candy>
+
+    <candy candyType="toffee" stuffed="false" candyId="2">
+        <name>Toffifee</name>
+        <energy>75</energy>
+        <ingredients>
+            <water>15.0</water>
+            <sugar>1.0</sugar>
+            <vanillin>0.2</vanillin>
+        </ingredients>
+        <energyValue>
+            <proteins>0.8</proteins>
+            <fats>25.0</fats>
+            <carbohydrates>18.0</carbohydrates>
+        </energyValue>
+        <production>
+            <manufactor>August Storck</manufactor>
+            <country>Germany</country>
+        </production>
+    </candy>
+
+    <candy candyType="caramel" stuffed="true" candyId="3">
+        <name>Fizzy Boom</name>
+        <energy>15</energy>
+        <ingredients>
+            <water>20.0</water>
+            <sugar>25.0</sugar>
+            <vanillin>0.0</vanillin>
+        </ingredients>
+        <energyValue>
+            <proteins>1.5</proteins>
+            <fats>5.0</fats>
+            <carbohydrates>20.0</carbohydrates>
+        </energyValue>
+        <production>
+            <manufactor>Roshen</manufactor>
+            <country>Ukraine</country>
+        </production>
+    </candy>
+
+</sweet-stuff>
+

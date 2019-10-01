@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema"
+        targetNamespace="http://www.training.by/candies"
+        xmlns:cns="http://www.training.by/candies"
+        elementFormDefault="qualified">
+    <element name="sweet-stuff">
+        <complexType>
+            <sequence>
+                <element maxOccurs="unbounded" name="candy">
+                    <complexType>
+                        <sequence>
+                            <element name="name" type="xs:string" />
+                            <element name="energy" type="xs:unsignedByte" />
+                            <element name="ingredients">
+                                <complexType>
+                                    <sequence>
+                                        <element name="water" type="xs:decimal" />
+                                        <element name="sugar" type="xs:decimal" />
+                                        <element name="vanillin" type="xs:decimal" />
+                                    </sequence>
+                                    <attribute name="chocolateType" type="xs:string" use="optional" />
+                                </complexType>
+                            </element>
+                            <element name="energyValue">
+                                <complexType>
+                                    <sequence>
+                                        <element name="proteins" type="xs:decimal" />
+                                        <element name="fats" type="xs:decimal" />
+                                        <element name="carbohydrates" type="xs:decimal" />
+                                    </sequence>
+                                </complexType>
+                            </element>
+                            <element name="production">
+                                <complexType>
+                                    <sequence>
+                                        <element name="manufactor" type="xs:string" />
+                                        <element name="country" type="xs:string" />
+                                    </sequence>
+                                </complexType>
+                            </element>
+                        </sequence>
+                        <attribute name="candyType" type="xs:string" use="required" />
+                        <attribute name="stuffed" type="xs:boolean" use="required" />
+                        <attribute name="candyId" type="xs:unsignedByte" use="required" />
+                    </complexType>
+                </element>
+            </sequence>
+        </complexType>
+    </element>
+</schema>

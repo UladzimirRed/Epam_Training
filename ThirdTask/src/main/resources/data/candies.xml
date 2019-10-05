@@ -4,7 +4,7 @@
              xmlns="http://www.training.by/candies"
              xsi:schemaLocation="http://www.training.by/candies candies.xsd">
 
-    <candy candyType="chocolate" stuffed="true" candyId="1">
+    <candy type="chocolate" stuffed="true" id="1">
         <name>Bounty</name>
         <energy>250</energy>
         <ingredients chocolateType="milk">
@@ -23,7 +23,7 @@
         </production>
     </candy>
 
-    <candy candyType="toffee" stuffed="false" candyId="2">
+    <candy type="toffee" stuffed="false" id="2">
         <name>Toffifee</name>
         <energy>75</energy>
         <ingredients>
@@ -42,7 +42,7 @@
         </production>
     </candy>
 
-    <candy candyType="caramel" stuffed="true" candyId="3">
+    <candy type="caramel" stuffed="true" id="3">
         <name>Fizzy Boom</name>
         <energy>15</energy>
         <ingredients>
@@ -62,4 +62,3 @@
     </candy>
 
 </sweet-stuff>
-

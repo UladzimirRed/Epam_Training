@@ -9,6 +9,7 @@
 package by.epam.training.entity;
 
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 public class Production {
@@ -55,7 +56,7 @@ public class Production {
         final StringBuilder sb = new StringBuilder("Production{");
         sb.append("manufactor='").append(manufactor).append('\'');
         sb.append(", country='").append(country).append('\'');
-        sb.append(", foundingDate=").append(foundingDate);
+        sb.append(", foundingDate=").append(new SimpleDateFormat("dd-MMM-yyyy").format(foundingDate.getTime()));
         sb.append('}');
         return sb.toString();
     }

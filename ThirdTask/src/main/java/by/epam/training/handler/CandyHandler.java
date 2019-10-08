@@ -1,27 +1,104 @@
 package by.epam.training.handler;
 
-import by.epam.training.entity.Candy;
-import by.epam.training.entity.Ingredients;
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
+import by.epam.training.entity.*;
+import org.xml.sax.Attributes;
 import org.xml.sax.helpers.DefaultHandler;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class CandyHandler extends DefaultHandler {
-    private static final Logger logger = LogManager.getLogger(CandyHandler.class);
     private List<Candy> candyList = new ArrayList<>();
-    private Candy candy;
-    private Ingredients ingredient = null;
+    private Candy candy = null;
+    private Ingredient ingredient = null;
+    private CandyKind candyKind = null;
+    private EnergyValue energyValue = null;
+    private Production production = null;
+    private String content = null;
 
     public List<Candy> getCandyList() {
         return candyList;
     }
 
     @Override
-    public void startDocument() {
-        logger.info("Sax parsing started");
+    public void startElement(String uri, String localMane, String qName, Attributes attributes) {
+        switch (qName) {
+            case "candy":
+                candy = new Candy();
+                candy.setId(attributes.getValue("id"));
+                break;
+            case "ingredient":
+                ingredient = new Ingredient();
+                break;
+            case "energyValue":
+                energyValue = new EnergyValue();
+                break;
+            case "production":
+                production = new Production();
+                break;
+        }
+    }
+
+    @Override
+    public void endElement(String uri, String localName, String qName) {
+        switch (qName) {
+            case "candy":
+                candyList.add(candy);
+                break;
+            case "title":
+                candy.setTitle(content);
+                break;
+            case "energy":
+                candy.setEnergy(Integer.parseInt(content));
+                break;
+            case "type":
+                candyKind = new CandyKind();
+                candyKind.setType(KindsOfCandies.valueOf(content));
+                break;
+            case "stuffed":
+                candyKind.setStuffed(Boolean.parseBoolean(content));
+                candy.setKind(candyKind);
+                break;
+            case "water":
+                ingredient.setWater(Double.parseDouble(content));
+                break;
+            case "sugar":
+                ingredient.setSugar(Double.parseDouble(content));
+                break;
+            case "vanillin":
+                ingredient.setVanillin(Double.parseDouble(content));
+                candy.setIngredient(ingredient);
+                break;
+            case "proteins":
+                energyValue.setProteins(Double.parseDouble(content));
+                break;
+            case "fats":
+                energyValue.setFats(Double.parseDouble(content));
+                break;
+            case "carbohydrates":
+                energyValue.setCarbohydrates(Double.parseDouble(content));
+                candy.setEnergyValue(energyValue);
+                break;
+            case "manufactor":
+                production.setManufactor(content);
+                break;
+            case "country":
+                production.setCountry(content);
+                break;
+            case "foundingDate":
+                Calendar calendar = Calendar.getInstance();
+                String[] strings = content.split("-");
+                calendar.set(Integer.parseInt(strings[0]), Integer.parseInt(strings[1]), Integer.parseInt(strings[2]));
+                production.setFoundingDate(calendar);
+                candy.setProduction(production);
+                break;
+        }
+    }
+
+    @Override
+    public void characters(char[] ch, int start, int length) {
+        content = String.copyValueOf(ch, start, length).trim();
     }
 
 }

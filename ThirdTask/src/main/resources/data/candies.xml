@@ -5,17 +5,17 @@
              xsi:schemaLocation="http://www.train.by/candies candies.xsd">
 
     <candy id="a3">
-        <name>Bounty</name>
+        <title>Bounty</title>
         <energy>250</energy>
         <kind>
             <type>CHOCOLATE</type>
             <stuffed>true</stuffed>
         </kind>
-        <ingredients>
+        <ingredient>
             <water>10.0</water>
             <sugar>2.0</sugar>
             <vanillin>0.1</vanillin>
-        </ingredients>
+        </ingredient>
         <energyValue>
             <proteins>0.5</proteins>
             <fats>88.0</fats>
@@ -29,17 +29,17 @@
     </candy>
 
     <candy id="b45">
-        <name>Toffifee</name>
+        <title>Toffifee</title>
         <energy>75</energy>
         <kind>
             <type>TOFFEE</type>
             <stuffed>false</stuffed>
         </kind>
-        <ingredients>
+        <ingredient>
             <water>15.0</water>
             <sugar>1.0</sugar>
             <vanillin>0.2</vanillin>
-        </ingredients>
+        </ingredient>
         <energyValue>
             <proteins>0.8</proteins>
             <fats>25.0</fats>
@@ -53,17 +53,17 @@
     </candy>
 
     <candy id="z33">
-        <name>Fizzy Boom</name>
+        <title>Fizzy Boom</title>
         <energy>15</energy>
         <kind>
             <type>CARAMEL</type>
             <stuffed>true</stuffed>
         </kind>
-        <ingredients>
+        <ingredient>
             <water>20.0</water>
             <sugar>25.0</sugar>
             <vanillin>0.0</vanillin>
-        </ingredients>
+        </ingredient>
         <energyValue>
             <proteins>1.5</proteins>
             <fats>5.0</fats>

@@ -13,10 +13,10 @@
     </element>
     <complexType name="candy">
         <sequence>
-            <element name="name" type="string"/>
+            <element name="title" type="string"/>
             <element name="energy" type="int"/>
             <element name="kind" type="tns:kind"/>
-            <element name="ingredients" type="tns:ingredients"/>
+            <element name="ingredient" type="tns:ingredient"/>
             <element name="energyValue" type="tns:energyValue"/>
             <element name="production" type="tns:production"/>
         </sequence>
@@ -43,7 +43,7 @@
         <element name="stuffed" type="boolean"/>
         </all>
     </complexType>
-    <complexType name="ingredients">
+    <complexType name="ingredient">
         <sequence>
             <element name="water" type="double"/>
             <element name="sugar" type="double"/>

@@ -4,8 +4,8 @@ import by.epam.training.entity.*;
 import org.xml.sax.Attributes;
 import org.xml.sax.helpers.DefaultHandler;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 public class CandyHandler extends DefaultHandler {
@@ -16,6 +16,9 @@ public class CandyHandler extends DefaultHandler {
     private EnergyValue energyValue = null;
     private Production production = null;
     private String content = null;
+    private static final String ID = "id";
+    private static final String UNIT = "unit";
+    private static final String DEFAULT_UNIT = "mg";
 
     public List<Candy> getCandyList() {
         return candyList;
@@ -26,10 +29,15 @@ public class CandyHandler extends DefaultHandler {
         switch (qName) {
             case "candy":
                 candy = new Candy();
-                candy.setId(attributes.getValue("id"));
+                candy.setId(attributes.getValue(ID));
                 break;
             case "ingredient":
                 ingredient = new Ingredient();
+                if (attributes.getValue(UNIT) != null) {
+                    ingredient.setUnit(attributes.getValue(UNIT));
+                } else {
+                    ingredient.setUnit(DEFAULT_UNIT);
+                }
                 break;
             case "energyValue":
                 energyValue = new EnergyValue();
@@ -87,10 +95,7 @@ public class CandyHandler extends DefaultHandler {
                 production.setCountry(content);
                 break;
             case "foundingDate":
-                Calendar calendar = Calendar.getInstance();
-                String[] strings = content.split("-");
-                calendar.set(Integer.parseInt(strings[0]), Integer.parseInt(strings[1]), Integer.parseInt(strings[2]));
-                production.setFoundingDate(calendar);
+                production.setFoundingDate(LocalDateTime.parse(content));
                 candy.setProduction(production);
                 break;
         }

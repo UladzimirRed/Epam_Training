@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-           targetNamespace="http://www.training.by/candies"
-           xmlns:tns="http://www.training.by/candies"
-           elementFormDefault="qualified" >
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        targetNamespace="http://www.training.by/candies"
+        xmlns:tns="http://www.training.by/candies"
+        elementFormDefault="qualified">
     <element name="sweet-stuff">
         <complexType>
             <sequence>
@@ -28,6 +28,7 @@
             </simpleType>
         </attribute>
     </complexType>
+
     <complexType name="kind">
         <all>
             <element name="type">

@@ -1,7 +1,6 @@
 package by.epam.training.entity;
 
 public class Candy {
-
     private String title;
     private int energy;
     private CandyKind candyKind = new CandyKind();
@@ -9,20 +8,6 @@ public class Candy {
     private EnergyValue energyValue = new EnergyValue();
     private Production production = new Production();
     private String id;
-
-    public Candy() {
-    }
-
-    public Candy(String name, int energy, CandyKind candyKind, Ingredient ingredients,
-                 EnergyValue energyValue, Production production, String id) {
-        this.title = name;
-        this.energy = energy;
-        this.candyKind = candyKind;
-        this.ingredient = ingredients;
-        this.energyValue = energyValue;
-        this.production = production;
-        this.id = id;
-    }
 
     public String getTitle() {
         return title;
@@ -78,6 +63,32 @@ public class Candy {
 
     public void setId(String value) {
         this.id = value;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Candy candy = (Candy) o;
+        if (energy != candy.energy) return false;
+        if (!title.equals(candy.title)) return false;
+        if (!candyKind.equals(candy.candyKind)) return false;
+        if (!ingredient.equals(candy.ingredient)) return false;
+        if (!energyValue.equals(candy.energyValue)) return false;
+        if (!production.equals(candy.production)) return false;
+        return id.equals(candy.id);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = title.hashCode();
+        result = 31 * result + energy;
+        result = 31 * result + candyKind.hashCode();
+        result = 31 * result + ingredient.hashCode();
+        result = 31 * result + energyValue.hashCode();
+        result = 31 * result + production.hashCode();
+        result = 31 * result + id.hashCode();
+        return result;
     }
 
     @Override

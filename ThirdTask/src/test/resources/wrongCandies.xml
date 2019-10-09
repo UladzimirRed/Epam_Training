@@ -1,0 +1,27 @@
+<sweet-stufffsd xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:noNamespacechemaLocation="candies.xsd">
+
+    <candy id="a1">
+        <name>Sweet</name>
+        <energ>250</energ>
+        <kind>
+            <type>CHOCOLATE</type>
+            <stuffed>true</stuffed>
+        </kind>
+        <ingredient unit="mg">
+            <water>10.0</water>
+            <sugar>2.0</sugar>
+            <vanillin>0.1</vanillin>
+        </ingredient>
+        <energyValue>
+            <proteins>0.5</proteins>
+            <fats>88.0</fats>
+            <carbohydrates>40.0</carbohydrates>
+        </energyValue>
+        <production>
+            <manufactor>Mars</manufactor>
+            <country>United States</country>
+            <foundingDate>1900-01-02T00:00:00</foundingDate>
+        </production>
+    </candy>
+/sweet-stufffsd

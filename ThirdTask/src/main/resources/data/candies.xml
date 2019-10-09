@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <sweet-stuff xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-             xmlns="http://www.train.by/candies"
-             xsi:schemaLocation="http://www.train.by/candies candies.xsd">
+             xmlns="http://www.training.by/candies"
+             xsi:schemaLocation="http://www.training.by/candies candies.xsd">
 
-    <candy id="a3">
+    <candy id="a1">
         <title>Bounty</title>
         <energy>250</energy>
         <kind>
             <type>CHOCOLATE</type>
             <stuffed>true</stuffed>
         </kind>
-        <ingredient>
+        <ingredient unit="mg">
             <water>10.0</water>
             <sugar>2.0</sugar>
             <vanillin>0.1</vanillin>
@@ -24,11 +24,11 @@
         <production>
             <manufactor>Mars</manufactor>
             <country>United States</country>
-            <foundingDate>1900-01-02</foundingDate>
+            <foundingDate>1900-01-02T00:00:00</foundingDate>
         </production>
     </candy>
 
-    <candy id="b45">
+    <candy id="b2">
         <title>Toffifee</title>
         <energy>75</energy>
         <kind>
@@ -48,11 +48,299 @@
         <production>
             <manufactor>August Storck</manufactor>
             <country>Germany</country>
-            <foundingDate>1900-01-02</foundingDate>
+            <foundingDate>1893-07-22T00:00:00</foundingDate>
         </production>
     </candy>
 
-    <candy id="z33">
+    <candy id="c3">
+        <title>Fizzy Boom</title>
+        <energy>15</energy>
+        <kind>
+            <type>CARAMEL</type>
+            <stuffed>true</stuffed>
+        </kind>
+        <ingredient unit="g">
+            <water>0.02</water>
+            <sugar>0.025</sugar>
+            <vanillin>0.001</vanillin>
+        </ingredient>
+        <energyValue>
+            <proteins>1.5</proteins>
+            <fats>5.0</fats>
+            <carbohydrates>20.0</carbohydrates>
+        </energyValue>
+        <production>
+            <manufactor>Roshen</manufactor>
+            <country>Ukraine</country>
+            <foundingDate>1993-11-12T00:00:00</foundingDate>
+        </production>
+    </candy>
+
+    <candy id="d4">
+        <title>Alionka</title>
+        <energy>80</energy>
+        <kind>
+            <type>CHOCOLATE</type>
+            <stuffed>false</stuffed>
+        </kind>
+        <ingredient unit="mg">
+            <water>14.0</water>
+            <sugar>0.5</sugar>
+            <vanillin>0.9</vanillin>
+        </ingredient>
+        <energyValue>
+            <proteins>1.0</proteins>
+            <fats>18.5</fats>
+            <carbohydrates>12.7</carbohydrates>
+        </energyValue>
+        <production>
+            <manufactor>Kommunarka</manufactor>
+            <country>Belarus</country>
+            <foundingDate>1942-11-07T00:00:00</foundingDate>
+        </production>
+    </candy>
+
+    <candy id="e5">
+        <title>Ferrara</title>
+        <energy>50</energy>
+        <kind>
+            <type>CHOCOLATE</type>
+            <stuffed>true</stuffed>
+        </kind>
+        <ingredient>
+            <water>10.8</water>
+            <sugar>2.5</sugar>
+            <vanillin>0.7</vanillin>
+        </ingredient>
+        <energyValue>
+            <proteins>0.12</proteins>
+            <fats>16.2</fats>
+            <carbohydrates>11.2</carbohydrates>
+        </energyValue>
+        <production>
+            <manufactor>Ferrara</manufactor>
+            <country>United States</country>
+            <foundingDate>1920-07-20T00:00:00</foundingDate>
+        </production>
+    </candy>
+
+    <candy id="f6">
+        <title>Kit Kat</title>
+        <energy>90</energy>
+        <kind>
+            <type>CHOCOLATE</type>
+            <stuffed>false</stuffed>
+        </kind>
+        <ingredient>
+            <water>5.5</water>
+            <sugar>3.0</sugar>
+            <vanillin>1.2</vanillin>
+        </ingredient>
+        <energyValue>
+            <proteins>0.20</proteins>
+            <fats>15.5</fats>
+            <carbohydrates>7.1</carbohydrates>
+        </energyValue>
+        <production>
+            <manufactor>Nestle</manufactor>
+            <country>Switzerland</country>
+            <foundingDate>1866-03-10T00:00:00</foundingDate>
+        </production>
+    </candy>
+
+    <candy id="g7">
+        <title>Mounds</title>
+        <energy>73</energy>
+        <kind>
+            <type>CHOCOLATE</type>
+            <stuffed>true</stuffed>
+        </kind>
+        <ingredient>
+            <water>7.3</water>
+            <sugar>2.1</sugar>
+            <vanillin>2.3</vanillin>
+        </ingredient>
+        <energyValue>
+            <proteins>12.1</proteins>
+            <fats>5.2</fats>
+            <carbohydrates>6.3</carbohydrates>
+        </energyValue>
+        <production>
+            <manufactor>Hershey</manufactor>
+            <country>Japan</country>
+            <foundingDate>1896-10-11T00:00:00</foundingDate>
+        </production>
+    </candy>
+
+    <candy id="h8">
+        <title>Nuts</title>
+        <energy>100</energy>
+        <kind>
+            <type>CHOCOLATE</type>
+            <stuffed>true</stuffed>
+        </kind>
+        <ingredient>
+            <water>2.1</water>
+            <sugar>0.8</sugar>
+            <vanillin>0.2</vanillin>
+        </ingredient>
+        <energyValue>
+            <proteins>11.2</proteins>
+            <fats>3.5</fats>
+            <carbohydrates>10.1</carbohydrates>
+        </energyValue>
+        <production>
+            <manufactor>Nestle</manufactor>
+            <country>Switzerland</country>
+            <foundingDate>1866-03-10T00:00:00</foundingDate>
+        </production>
+    </candy>
+
+    <candy id="i9">
+        <title>Picnic</title>
+        <energy>88</energy>
+        <kind>
+            <type>CHOCOLATE</type>
+            <stuffed>true</stuffed>
+        </kind>
+        <ingredient>
+            <water>7.0</water>
+            <sugar>0.6</sugar>
+            <vanillin>0.8</vanillin>
+        </ingredient>
+        <energyValue>
+            <proteins>7.0</proteins>
+            <fats>18.5</fats>
+            <carbohydrates>12.7</carbohydrates>
+        </energyValue>
+        <production>
+            <manufactor>Cadbury</manufactor>
+            <country>United Kindom</country>
+            <foundingDate>1824-05-12T00:00:00</foundingDate>
+        </production>
+    </candy>
+
+    <candy id="j10">
+        <title>Korovka</title>
+        <energy>52</energy>
+        <kind>
+            <type>TOFFEE</type>
+            <stuffed>false</stuffed>
+        </kind>
+        <ingredient>
+            <water>8.0</water>
+            <sugar>3.7</sugar>
+            <vanillin>2.3</vanillin>
+        </ingredient>
+        <energyValue>
+            <proteins>12.5</proteins>
+            <fats>7.2</fats>
+            <carbohydrates>3.1</carbohydrates>
+        </energyValue>
+        <production>
+            <manufactor>Red Mozyrianin</manufactor>
+            <country>Belarus</country>
+            <foundingDate>1955-11-02T00:00:00</foundingDate>
+        </production>
+    </candy>
+
+    <candy id="k11">
+        <title>Golden key</title>
+        <energy>70</energy>
+        <kind>
+            <type>TOFFEE</type>
+            <stuffed>false</stuffed>
+        </kind>
+        <ingredient>
+            <water>3.3</water>
+            <sugar>2.2</sugar>
+            <vanillin>4.3</vanillin>
+        </ingredient>
+        <energyValue>
+            <proteins>13.0</proteins>
+            <fats>5.0</fats>
+            <carbohydrates>4.2</carbohydrates>
+        </energyValue>
+        <production>
+            <manufactor>Red Mozyrianin</manufactor>
+            <country>Belarus</country>
+            <foundingDate>1955-11-02T00:00:00</foundingDate>
+        </production>
+    </candy>
+
+    <candy id="L12">
+        <title>Barbariska</title>
+        <energy>13</energy>
+        <kind>
+            <type>CARAMEL</type>
+            <stuffed>false</stuffed>
+        </kind>
+        <ingredient>
+            <water>1.2</water>
+            <sugar>7.1</sugar>
+            <vanillin>4.5</vanillin>
+        </ingredient>
+        <energyValue>
+            <proteins>7.1</proteins>
+            <fats>2.2</fats>
+            <carbohydrates>4.4</carbohydrates>
+        </energyValue>
+        <production>
+            <manufactor>Kommunarka</manufactor>
+            <country>Belarus</country>
+            <foundingDate>1910-11-07T00:00:00</foundingDate>
+        </production>
+    </candy>
+
+    <candy id="m13">
+        <title>Bim-Bom</title>
+        <energy>25</energy>
+        <kind>
+            <type>CARAMEL</type>
+            <stuffed>true</stuffed>
+        </kind>
+        <ingredient>
+            <water>25.5</water>
+            <sugar>20.3</sugar>
+            <vanillin>0.6</vanillin>
+        </ingredient>
+        <energyValue>
+            <proteins>2.5</proteins>
+            <fats>5.7</fats>
+            <carbohydrates>22.0</carbohydrates>
+        </energyValue>
+        <production>
+            <manufactor>Roshen</manufactor>
+            <country>Ukraine</country>
+            <foundingDate>1900-01-02T00:00:00</foundingDate>
+        </production>
+    </candy>
+
+    <candy id="n14">
+        <title>Peppinezzz</title>
+        <energy>23</energy>
+        <kind>
+            <type>CARAMEL</type>
+            <stuffed>true</stuffed>
+        </kind>
+        <ingredient>
+            <water>22.2</water>
+            <sugar>15.3</sugar>
+            <vanillin>1.2</vanillin>
+        </ingredient>
+        <energyValue>
+            <proteins>2.7</proteins>
+            <fats>5.6</fats>
+            <carbohydrates>25.1</carbohydrates>
+        </energyValue>
+        <production>
+            <manufactor>Roshen</manufactor>
+            <country>Ukraine</country>
+            <foundingDate>1900-01-02T00:00:00</foundingDate>
+        </production>
+    </candy>
+
+    <candy id="o15">
         <title>Fizzy Boom</title>
         <energy>15</energy>
         <kind>
@@ -72,7 +360,55 @@
         <production>
             <manufactor>Roshen</manufactor>
             <country>Ukraine</country>
-            <foundingDate>1900-01-02</foundingDate>
+            <foundingDate>1900-01-02T00:00:00</foundingDate>
+        </production>
+    </candy>
+
+    <candy id="p16">
+        <title>Red hat</title>
+        <energy>13</energy>
+        <kind>
+            <type>CARAMEL</type>
+            <stuffed>false</stuffed>
+        </kind>
+        <ingredient>
+            <water>1.2</water>
+            <sugar>7.1</sugar>
+            <vanillin>4.5</vanillin>
+        </ingredient>
+        <energyValue>
+            <proteins>7.1</proteins>
+            <fats>2.2</fats>
+            <carbohydrates>4.4</carbohydrates>
+        </energyValue>
+        <production>
+            <manufactor>Kommunarka</manufactor>
+            <country>Belarus</country>
+            <foundingDate>1910-11-07T00:00:00</foundingDate>
+        </production>
+    </candy>
+
+    <candy id="q17">
+        <title>Wunderbar</title>
+        <energy>88</energy>
+        <kind>
+            <type>CHOCOLATE</type>
+            <stuffed>true</stuffed>
+        </kind>
+        <ingredient>
+            <water>6.1</water>
+            <sugar>0.6</sugar>
+            <vanillin>1.8</vanillin>
+        </ingredient>
+        <energyValue>
+            <proteins>7.2</proteins>
+            <fats>18.5</fats>
+            <carbohydrates>9.8</carbohydrates>
+        </energyValue>
+        <production>
+            <manufactor>Cadbury</manufactor>
+            <country>Canada</country>
+            <foundingDate>1864-03-22T00:00:00</foundingDate>
         </production>
     </candy>
 

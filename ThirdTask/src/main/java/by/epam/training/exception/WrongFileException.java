@@ -1,6 +1,6 @@
 package by.epam.training.exception;
 
-public class WrongFileException extends Exception{
+public class WrongFileException extends Exception {
     public WrongFileException(String message) {
         super(message);
     }

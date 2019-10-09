@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sweet-stuff xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns="http://www.training.by/candies"
+             xsi:schemaLocation="http://www.training.by/candies candies.xsd">
+
+    <candy id="a1">
+        <title>Bounty</title>
+        <energy>250</energy>
+        <kind>
+            <type>CHOCOLATE</type>
+            <stuffed>true</stuffed>
+        </kind>
+        <ingredient unit="mg">
+            <water>10.0</water>
+            <sugar>2.0</sugar>
+            <vanillin>0.1</vanillin>
+        </ingredient>
+        <energyValue>
+            <proteins>0.5</proteins>
+            <fats>88.0</fats>
+            <carbohydrates>40.0</carbohydrates>
+        </energyValue>
+        <production>
+            <manufactor>Mars</manufactor>
+            <country>United States</country>
+            <foundingDate>1900-01-02T00:00:00</foundingDate>
+        </production>
+    </candy>
+
+    <candy id="b2">
+        <title>Toffifee</title>
+        <energy>75</energy>
+        <kind>
+            <type>TOFFEE</type>
+            <stuffed>false</stuffed>
+        </kind>
+        <ingredient>
+            <water>15.0</water>
+            <sugar>1.0</sugar>
+            <vanillin>0.2</vanillin>
+        </ingredient>
+        <energyValue>
+            <proteins>0.8</proteins>
+            <fats>25.0</fats>
+            <carbohydrates>18.0</carbohydrates>
+        </energyValue>
+        <production>
+            <manufactor>August Storck</manufactor>
+            <country>Germany</country>
+            <foundingDate>1893-07-22T00:00:00</foundingDate>
+        </production>
+    </candy>
+
+    <candy id="c3">
+        <title>Fizzy Boom</title>
+        <energy>15</energy>
+        <kind>
+            <type>CARAMEL</type>
+            <stuffed>true</stuffed>
+        </kind>
+        <ingredient unit="g">
+            <water>0.02</water>
+            <sugar>0.025</sugar>
+            <vanillin>0.001</vanillin>
+        </ingredient>
+        <energyValue>
+            <proteins>1.5</proteins>
+            <fats>5.0</fats>
+            <carbohydrates>20.0</carbohydrates>
+        </energyValue>
+        <production>
+            <manufactor>Roshen</manufactor>
+            <country>Ukraine</country>
+            <foundingDate>1993-11-12T00:00:00</foundingDate>
+        </production>
+    </candy>
+
+    <candy id="d4">
+        <title>Alionka</title>
+        <energy>80</energy>
+        <kind>
+            <type>CHOCOLATE</type>
+            <stuffed>false</stuffed>
+        </kind>
+        <ingredient unit="mg">
+            <water>14.0</water>
+            <sugar>0.5</sugar>
+            <vanillin>0.9</vanillin>
+        </ingredient>
+        <energyValue>
+            <proteins>1.0</proteins>
+            <fats>18.5</fats>
+            <carbohydrates>12.7</carbohydrates>
+        </energyValue>
+        <production>
+            <manufactor>Kommunarka</manufactor>
+            <country>Belarus</country>
+            <foundingDate>1942-11-07T00:00:00</foundingDate>
+        </production>
+    </candy>
+
+    <candy id="e5">
+        <title>Ferrara</title>
+        <energy>50</energy>
+        <kind>
+            <type>CHOCOLATE</type>
+            <stuffed>true</stuffed>
+        </kind>
+        <ingredient>
+            <water>10.8</water>
+            <sugar>2.5</sugar>
+            <vanillin>0.7</vanillin>
+        </ingredient>
+        <energyValue>
+            <proteins>0.12</proteins>
+            <fats>16.2</fats>
+            <carbohydrates>11.2</carbohydrates>
+        </energyValue>
+        <production>
+            <manufactor>Ferrara</manufactor>
+            <country>United States</country>
+            <foundingDate>1920-07-20T00:00:00</foundingDate>
+        </production>
+    </candy>
+
+</sweet-stuff>

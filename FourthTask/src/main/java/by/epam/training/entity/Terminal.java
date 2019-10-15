@@ -3,11 +3,10 @@ package by.epam.training.entity;
 import by.epam.training.queue.TruckPriorityQueue;
 
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class Terminal implements Runnable {
-    private TruckPriorityQueue truckPriorityQueue = TruckPriorityQueue.INSTANCE;
+    private TruckPriorityQueue truckPriorityQueue = TruckPriorityQueue.getInstance();
     private ReentrantLock lock = new ReentrantLock();
 
     @Override

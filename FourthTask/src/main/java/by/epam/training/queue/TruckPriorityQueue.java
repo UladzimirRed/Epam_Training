@@ -4,14 +4,30 @@ import by.epam.training.entity.Truck;
 
 import java.util.Comparator;
 import java.util.PriorityQueue;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.locks.ReentrantLock;
 
-public enum TruckPriorityQueue {
-    //todo if you want, rewrite singleton
-    INSTANCE;
-    private ReentrantLock lock = new ReentrantLock();
+public class TruckPriorityQueue {
+    private static TruckPriorityQueue queue;
+    private static ReentrantLock lock = new ReentrantLock();
+    private static AtomicBoolean isCreate = new AtomicBoolean(false);
 
     private PriorityQueue<Truck> priorityQueue = new PriorityQueue<>(Comparator.comparing(Truck::isPerishableCargo).reversed());
+
+    public static TruckPriorityQueue getInstance() {
+        if (!isCreate.get()) {
+            try {
+                lock.lock();
+                if (queue == null) {
+                    queue = new TruckPriorityQueue();
+                    isCreate.set(true);
+                }
+            } finally {
+                lock.unlock();
+            }
+        }
+        return queue;
+    }
 
     public void addTruck(Truck truck) {
         lock.lock();

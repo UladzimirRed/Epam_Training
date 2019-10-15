@@ -1,4 +1,4 @@
-package by.epam.training.util;
+package by.epam.training.util.creator;
 
 import by.epam.training.entity.Truck;
 import by.epam.training.queue.TruckPriorityQueue;
@@ -19,8 +19,8 @@ public class TruckCreator implements Runnable {
             try {
                 new Thread(truck).start();
                 TimeUnit.SECONDS.sleep(1);
-                TruckPriorityQueue.INSTANCE.addTruck(truck);
-            } catch (InterruptedException e) {
+                TruckPriorityQueue.getInstance().addTruck(truck);
+            } catch (InterruptedException e) {     // FIXME WHAT CAN I DO?
                 e.printStackTrace();
             }
         }

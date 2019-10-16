@@ -8,11 +8,12 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class TruckPriorityQueue {
+
     private static TruckPriorityQueue queue;
     private static ReentrantLock lock = new ReentrantLock();
     private static AtomicBoolean isCreate = new AtomicBoolean(false);
 
-    private PriorityQueue<Truck> priorityQueue = new PriorityQueue<>(Comparator.comparing(Truck::isPerishableCargo).reversed());
+    private final PriorityQueue<Truck> priorityQueue = new PriorityQueue<>(Comparator.comparing(Truck::isPerishableCargo).reversed());
 
     public static TruckPriorityQueue getInstance() {
         if (!isCreate.get()) {
@@ -31,10 +32,7 @@ public class TruckPriorityQueue {
 
     public void addTruck(Truck truck) {
         lock.lock();
-        if (truck != null) {
-            priorityQueue.add(truck);
-            truck.nextState();
-        }
+        priorityQueue.add(truck);
         lock.unlock();
     }
 
@@ -49,9 +47,13 @@ public class TruckPriorityQueue {
     public Truck pollTruck() {
         lock.lock();
         Truck truck = priorityQueue.poll();
-        if (truck != null) {
-            truck.nextState();
-        }
+        lock.unlock();
+        return truck;
+    }
+
+    public Truck peekTruck() {
+        lock.lock();
+        Truck truck = priorityQueue.peek();
         lock.unlock();
         return truck;
     }

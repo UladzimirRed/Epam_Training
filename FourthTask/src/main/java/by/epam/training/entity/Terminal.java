@@ -2,40 +2,44 @@ package by.epam.training.entity;
 
 import by.epam.training.queue.TruckPriorityQueue;
 
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.Semaphore;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.locks.ReentrantLock;
 
-public class Terminal implements Runnable {
-    private TruckPriorityQueue truckPriorityQueue = TruckPriorityQueue.getInstance();
-    private ReentrantLock lock = new ReentrantLock();
+public class Terminal {
 
-    @Override
-    public void run() {
-        while (true) {
+    private static Terminal terminal;
+    private TruckPriorityQueue truckPriorityQueue = TruckPriorityQueue.getInstance();
+    private static AtomicBoolean isCreate = new AtomicBoolean(false);
+
+    private static ReentrantLock lock = new ReentrantLock();
+    private Semaphore terminalSemaphore;
+
+    public static Terminal getInstance() {
+        if (!isCreate.get()) {
             try {
                 lock.lock();
-                if (truckPriorityQueue.isEmpty()) {
-                    TimeUnit.SECONDS.sleep(5);
-                    if (truckPriorityQueue.isEmpty()) {
-                        break;
-                    }
+                if (terminal == null) {
+                    terminal = new Terminal();
+                    isCreate.set(true);
                 }
-                TimeUnit.SECONDS.sleep(1);
-                Truck truck = truckPriorityQueue.pollTruck();
-                if (truck != null) {
-                    if (truck.isLoaded()) {
-                        truck.setLoaded(false);
-                    } else {
-                        truck.setLoaded(true);
-                    }
-                    TimeUnit.SECONDS.sleep(1);
-                    truck.nextState();
-                }
+            } finally {
                 lock.unlock();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
             }
         }
+        return terminal;
+    }
 
+    public void process() {
+        Truck truck = truckPriorityQueue.pollTruck();
+        truck.setLoaded(!truck.isLoaded());
+    }
+
+    public Semaphore getTerminalSemaphore() {
+        return terminalSemaphore;
+    }
+
+    public void setTerminalSemaphore(int numberOfTerminals) {
+        this.terminalSemaphore = new Semaphore(numberOfTerminals, true);
     }
 }

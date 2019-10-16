@@ -1,10 +1,16 @@
 package by.epam.training.entity;
 
+import by.epam.training.queue.TruckPriorityQueue;
 import by.epam.training.state.TruckState;
-import by.epam.training.state.impl.FinishedState;
-import by.epam.training.state.impl.ReachedBaseState;
+
+import java.util.concurrent.TimeUnit;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class Truck implements Runnable {
+    private static final Logger logger = LogManager.getLogger(Truck.class);
+
     private long id;
     private boolean perishableCargo;
     private boolean loaded;
@@ -14,7 +20,7 @@ public class Truck implements Runnable {
         this.id = id;
         this.loaded = loaded;
         this.perishableCargo = perishableCargo;
-        truckState = new ReachedBaseState();
+        truckState = TruckState.REACHED_BASE;
     }
 
     public long getId() {
@@ -38,9 +44,7 @@ public class Truck implements Runnable {
     }
 
     public void setLoaded(boolean loaded) {
-
         this.loaded = loaded;
-
     }
 
     public TruckState getTruckState() {
@@ -52,32 +56,61 @@ public class Truck implements Runnable {
     }
 
     public void nextState() {
-        truckState.nextState(this);
-        printState();
+        TruckState.nextState(this);
+        logTruckStatus();
     }
 
-    public void printState() {
-        truckState.printStatus(this);
+    public void logTruckStatus() {
+        logger.info(this + truckState.getState());
     }
+
 
     @Override
     public void run() {
-        printState();
-        while (true) {
-            if (truckState instanceof FinishedState) {
-                break;
+        try {
+            if (truckState.equals(TruckState.FINISHED)) {
+                logTruckStatus();
+            } else {
+                logTruckStatus();
+                TruckPriorityQueue truckPriorityQueue = TruckPriorityQueue.getInstance();
+                truckPriorityQueue.addTruck(this);
+                TimeUnit.SECONDS.sleep(1);
+                nextState();
+
+                LogisticBase logisticBase = LogisticBase.getInstance();
+                Terminal terminal = logisticBase.getTerminal();
+
+                while (!this.equals(truckPriorityQueue.peekTruck())) {
+                    TimeUnit.MILLISECONDS.sleep(100);
+                }
+
+                terminal.getTerminalSemaphore().acquire();
+                TimeUnit.MILLISECONDS.sleep(500);
+                terminal.process();
+                nextState();
+                TimeUnit.SECONDS.sleep(1);
+                nextState();
+                terminal.getTerminalSemaphore().release();
             }
+        } catch (InterruptedException e) {
+            logger.error("Truck thread was interrupted: ", e);
         }
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
         Truck truck = (Truck) o;
 
-        if (id != truck.id) return false;
+        if (id != truck.id) {
+            return false;
+        }
         return perishableCargo == truck.perishableCargo;
     }
 
@@ -90,10 +123,10 @@ public class Truck implements Runnable {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("Truck{");
+        final StringBuilder sb = new StringBuilder("Truck {");
         sb.append("id=").append(id);
-        sb.append(", perishableCargo=").append(perishableCargo);
-        sb.append(", loaded=").append(loaded);
+        sb.append("; perishable-").append(perishableCargo);
+        sb.append("; loaded-").append(loaded);
         sb.append('}');
         return sb.toString();
     }

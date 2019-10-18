@@ -1,16 +1,9 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Vladimir_Red
-  Date: 17.10.2019
-  Time: 17:46
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <html>
   <head>
-    <title>$Title$</title>
+    <title>Index</title>
   </head>
   <body>
-  $END$
+  <jsp:forward page="/jsp/Login.jsp">
   </body>
 </html>

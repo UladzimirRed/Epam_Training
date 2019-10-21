@@ -3,7 +3,6 @@ package by.epam.training.command.factory;
 import by.epam.training.command.ActionCommand;
 import by.epam.training.command.CommandEnum;
 import by.epam.training.command.impl.EmptyCommand;
-import by.epam.training.resource.MessageManager;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -15,10 +14,9 @@ public class ActionFactory {
             return currentCommand;
         }
         try {
-            CommandEnum currentEnum = CommandEnum.valueOf(action.toUpperCase());
-            currentCommand = currentEnum.getCurrentCommand();
+            currentCommand = CommandEnum.getCurrentCommand(action);
         }catch (IllegalArgumentException e){
-            request.setAttribute("wrongAction", action + MessageManager.getProperty("message.wrongaction"));
+            request.setAttribute("wrongAction", "wrongaction");
         }
         return currentCommand;
     }

@@ -2,8 +2,6 @@ package by.epam.training.command.impl;
 
 import by.epam.training.command.ActionCommand;
 import by.epam.training.logic.LoginLogic;
-import by.epam.training.resource.ConfigurationManager;
-import by.epam.training.resource.MessageManager;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -16,11 +14,12 @@ public class LoginCommand implements ActionCommand {
         String login = request.getParameter(PARAM_NAME_LOGIN);
         String password = request.getParameter(PARAM_NAME_PASSWORD);
         if (LoginLogic.checkLogin(login, password)){
+            request.getSession().setAttribute("user", login);
             request.setAttribute("user", login);
-            page = ConfigurationManager.getProperty("path.page.main");
+            page = "/main";
         }else {
-            request.setAttribute("errorLoginPassMessage", MessageManager.getProperty("message.loginerror"));
-            page = ConfigurationManager.getProperty("path.page.login");
+            request.setAttribute("wrongData", "Wrong password");
+            page = "/login";
         }
         return page;
     }

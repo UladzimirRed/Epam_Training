@@ -1,5 +1,7 @@
 package by.epam.training.database;
 
+import by.epam.training.entity.User;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,10 +24,9 @@ public class DbMain {
         properties.put("useSSL", "false");
         try (Connection connection = DriverManager.getConnection(url, properties);
              Statement statement = connection.createStatement()) {
-
             String sql = "SELECT id, lastName, phone FROM users";
             ResultSet resultSet = statement.executeQuery(sql);
-            List<Abonent> abonents = new ArrayList<>();
+            List<User> users = new ArrayList<>();
 
 //            resultSet.moveToInsertRow();
 //            resultSet.updateInt(1, 3);
@@ -38,9 +39,9 @@ public class DbMain {
                 int id = resultSet.getInt(1);
                 String name = resultSet.getString(2);
                 int number = resultSet.getInt(3);
-                abonents.add(new Abonent(id, name, number));
+                users.add(new User(id, name, number));
             }
-            System.out.println(abonents);
+            System.out.println(users);
         } catch (SQLException e) {
             e.printStackTrace();
         }

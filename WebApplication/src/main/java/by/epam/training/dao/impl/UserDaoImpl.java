@@ -3,7 +3,6 @@ package by.epam.training.dao.impl;
 import by.epam.training.dao.UserDao;
 import by.epam.training.entity.User;
 import by.epam.training.exception.DaoException;
-import org.apache.log4j.Level;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
@@ -13,8 +12,8 @@ import java.util.List;
 
 public class UserDaoImpl implements UserDao {
     private static final Logger logger = LogManager.getLogger(UserDaoImpl.class);
-    private static final String SQL_SELECT_USER_BY_LASTNAME = "SELECT id, phone FROM users WHERE lastName=?";
-    private static final String SQL_SELECT_ALL_USERS = "SELECT id, phone, lastName FROM users";
+    private static final String SQL_SELECT_USER_BY_LASTNAME = "SELECT id, password FROM users WHERE login=?";
+    private static final String SQL_SELECT_ALL_USERS = "SELECT id,  login, password FROM users";
 
     @Override
     public List<User> findUserByLastName(String namePattern) throws DaoException {

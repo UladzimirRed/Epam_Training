@@ -1,5 +1,6 @@
 package by.epam.training.dao;
 
+import by.epam.training.connection.ConnectionPool;
 import by.epam.training.entity.Entity;
 import by.epam.training.exception.DaoException;
 import org.apache.log4j.Level;
@@ -35,13 +36,8 @@ public interface BaseDao<K, T extends Entity> {
 
 
     default void close(Connection connection) {
-        try {
-            if (connection != null){
-                //FIXME return connection to pool
-                connection.close();
-            }
-        } catch (SQLException e) {
-            logger.log(Level.ERROR, "Couldn't close connection: " + e.getMessage());
+        if (connection != null){
+            ConnectionPool.INSTANCE.releaseConnection(connection);
         }
     }
 }

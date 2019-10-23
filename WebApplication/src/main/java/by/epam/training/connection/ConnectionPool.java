@@ -17,8 +17,8 @@ public enum ConnectionPool {
 
     private static Logger logger = LogManager.getLogger(ConnectionPool.class);
 
-    private BlockingQueue<Connection> freeConnections;
-    private Queue<Connection> givenAwayConnections;
+    private BlockingQueue<ProxyConnection> freeConnections;
+    private Queue<ProxyConnection> givenAwayConnections;
     private final static int DEFAULT_POOL_SIZE = 32;
 
     ConnectionPool() {
@@ -30,7 +30,7 @@ public enum ConnectionPool {
         Connection connection = null;
         try {
             connection = freeConnections.take();
-            givenAwayConnections.offer(connection);
+            givenAwayConnections.offer((ProxyConnection) connection);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -39,15 +39,13 @@ public enum ConnectionPool {
 
     public void releaseConnection(Connection connection) {
         givenAwayConnections.remove(connection);
-        freeConnections.offer(connection);
+        freeConnections.offer((ProxyConnection) connection);
     }
 
     public void destroyPool() throws ConnectionPoolException {
         for (int i = 0; i < DEFAULT_POOL_SIZE; i++) {
             try {
-                freeConnections.take().close();   //TODO Change method to reallyClose();
-            } catch (SQLException e) {
-                throw new ConnectionPoolException("Couldn't close connection" + e);
+                freeConnections.take().reallyClose();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

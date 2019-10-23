@@ -14,7 +14,7 @@ public class DbMain {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-        String url = "jdbc:mysql://localhost:3306/project_database";
+        String url = "jdbc:mysql://localhost:3306/counter-exchange_db";
         Properties properties = new Properties();
         properties.put("user", "root");
         properties.put("password", "1256");
@@ -24,7 +24,7 @@ public class DbMain {
         properties.put("useSSL", "false");
         try (Connection connection = DriverManager.getConnection(url, properties);
              Statement statement = connection.createStatement()) {
-            String sql = "SELECT id, lastName, phone FROM users";
+            String sql = "SELECT id, login, password FROM users";
             ResultSet resultSet = statement.executeQuery(sql);
             List<User> users = new ArrayList<>();
 

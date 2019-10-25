@@ -3,7 +3,6 @@ package by.epam.training.command.impl;
 import by.epam.training.command.ActionCommand;
 import by.epam.training.entity.User;
 import by.epam.training.exception.ServiceException;
-import by.epam.training.logic.LoginLogic;
 import by.epam.training.service.UserService;
 import by.epam.training.util.JspAddresses;
 import by.epam.training.util.JspAttribute;
@@ -16,8 +15,6 @@ import javax.servlet.http.HttpSession;
 
 public class LoginCommand implements ActionCommand {
     private static final Logger logger = LogManager.getLogger(LoginCommand.class);
-    private static final String PARAM_NAME_LOGIN = "login";
-    private static final String PARAM_NAME_PASSWORD = "password";
 
     @Override
     public String execute(HttpServletRequest request) {
@@ -40,15 +37,3 @@ public class LoginCommand implements ActionCommand {
         return null;
     }
 }
-//        String page = null;
-//        String login = request.getParameter(PARAM_NAME_LOGIN);
-//        String password = request.getParameter(PARAM_NAME_PASSWORD);
-//        if (LoginLogic.checkLogin(login, password)){
-//            request.getSession().setAttribute("user", login);
-//            request.setAttribute("user", login);
-//            page = "/main";
-//        }else {
-//            request.setAttribute("wrongData", "Wrong password");
-//            page = "/login";
-//        }
-//        return page;

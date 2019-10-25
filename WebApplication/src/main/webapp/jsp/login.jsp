@@ -28,15 +28,14 @@
 <form name="LoginForm" method="POST" action="controller">
     <input type="hidden" name="command" value="login"/>
     <span>${login}:</span>
-    <input type="text" name="login" value=""/>
+    <input type="text"
+           name="login"
+           value=""/>
     <span>${password}:</span>
-    <input type="password" name="password" value=""/>
+    <input type="password"
+           name="password"
+           value=""/>
     <br/>
-    ${errorLoginPassMessage}
-    <br/>
-    ${wrongAction}
-    <br/>
-    ${nullPage}
     <br/>
     <input type="submit" value="${log_in}"/>
     <c:choose>

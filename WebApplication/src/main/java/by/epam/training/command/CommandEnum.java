@@ -13,13 +13,8 @@ public enum CommandEnum {
 
     private ActionCommand command;
 
-
     CommandEnum(ActionCommand command) {
         this.command = command;
-    }
-
-    public static ActionCommand getCurrentCommand(String action) {
-        return CommandEnum.valueOf(action.toUpperCase()).command;
     }
 
     public ActionCommand getCurrentCommand() {

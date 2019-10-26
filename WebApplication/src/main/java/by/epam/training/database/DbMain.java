@@ -14,7 +14,7 @@ public class DbMain {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-        String url = "jdbc:mysql://localhost:3306/courier_exchange_db";
+        String url = "jdbc:mysql://localhost:3306/project_database";
         Properties properties = new Properties();
         properties.put("user", "root");
         properties.put("password", "1256");
@@ -24,7 +24,7 @@ public class DbMain {
         properties.put("useSSL", "false");
         try (Connection connection = DriverManager.getConnection(url, properties);
              Statement statement = connection.createStatement()) {
-            String sql = "SELECT * FROM profiles WHERE login = 'admin' AND password = 'admin'";
+            String sql = "SELECT id, lastName, phone FROM users";
             ResultSet resultSet = statement.executeQuery(sql);
             List<User> users = new ArrayList<>();
 
@@ -37,10 +37,9 @@ public class DbMain {
 
             while (resultSet.next()) {
                 int id = resultSet.getInt(1);
-                String login = resultSet.getString(2);
-                String password = resultSet.getString(3);
-                int role = resultSet.getInt(4);
-                users.add(new User(id, login, password, role));
+                String name = resultSet.getString(2);
+                int number = resultSet.getInt(3);
+                users.add(new User(id, name, number));
             }
             System.out.println(users);
         } catch (SQLException e) {

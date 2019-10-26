@@ -2,23 +2,16 @@ package by.epam.training.entity;
 
 public class User extends Entity{
     private int id;
-    private String login;
-    private String password;
-    private int role;
+    private String name;
+    private int phone;
 
     public User() {
     }
 
-    public User(String login, String password) {
-        this.login = login;
-        this.password = password;
-    }
-
-    public User(int id, String login, String password, int role) {
+    public User(int id, String name, int phone) {
         this.id = id;
-        this.login = login;
-        this.password = password;
-        this.role = role;
+        this.name = name;
+        this.phone = phone;
     }
 
     public int getId() {
@@ -29,37 +22,28 @@ public class User extends Entity{
         this.id = id;
     }
 
-    public String getLogin() {
-        return login;
+    public String getName() {
+        return name;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getPassword() {
-        return password;
+    public int getPhone() {
+        return phone;
     }
 
-    public void setPassword(String pass) {
-        this.password = pass;
-    }
-
-    public int getRole() {
-        return role;
-    }
-
-    public void setRole(int role) {
-        this.role = role;
+    public void setPhone(int phone) {
+        this.phone = phone;
     }
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("User{");
+        final StringBuilder sb = new StringBuilder("Abonent{");
         sb.append("id=").append(id);
-        sb.append(", login='").append(login).append('\'');
-        sb.append(", password='").append(password).append('\'');
-        sb.append(", role=").append(role);
+        sb.append(", name='").append(name).append('\'');
+        sb.append(", phone=").append(phone);
         sb.append('}');
         return sb.toString();
     }

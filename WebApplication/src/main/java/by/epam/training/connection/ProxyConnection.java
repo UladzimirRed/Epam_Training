@@ -10,16 +10,7 @@ import java.util.concurrent.Executor;
 public class ProxyConnection implements Connection {
     private Connection connection;
 
-    ProxyConnection(Connection connection) {
-        this.connection = connection;
-    }
-
-    void reallyClose() throws ConnectionPoolException {
-        try {
-            connection.close();
-        } catch (SQLException e) {
-            throw new ConnectionPoolException("Couldn't close connection" + e);
-        }
+    ProxyConnection() {
     }
 
     @Override
@@ -65,6 +56,14 @@ public class ProxyConnection implements Connection {
     @Override
     public void close() {
         ConnectionPool.INSTANCE.releaseConnection(this);
+    }
+
+    void reallyClose() throws ConnectionPoolException {
+        try {
+            connection.close();
+        } catch (SQLException e) {
+            throw new ConnectionPoolException("Couldn't close connection" + e);
+        }
     }
 
     @Override

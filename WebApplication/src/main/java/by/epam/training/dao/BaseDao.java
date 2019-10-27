@@ -12,17 +12,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
 
-public interface BaseDao<K, T extends Entity> {
+public interface BaseDao<T extends Entity> {
     Logger logger = LogManager.getLogger(BaseDao.class);
-
-    List<T> findAll() throws DaoException;
-
-    boolean delete(T t) throws DaoException;
-
-    boolean create(T t) throws DaoException;
-
-    T update(T t) throws DaoException;
-
 
     default void close(Statement statement) {
         try {

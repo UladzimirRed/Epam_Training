@@ -35,12 +35,12 @@ public class DbMain {
 //            resultSet.insertRow();
 //            resultSet.moveToCurrentRow();
 
-            while (resultSet.next()) {
-                int id = resultSet.getInt(1);
-                String name = resultSet.getString(2);
-                int number = resultSet.getInt(3);
-                users.add(new User(id, name, number));
-            }
+//            while (resultSet.next()) {
+//                int id = resultSet.getInt(1);
+//                String name = resultSet.getString(2);
+//                int number = resultSet.getInt(3);
+//                users.add(new User(id, name, number));
+//            }
             System.out.println(users);
         } catch (SQLException e) {
             e.printStackTrace();

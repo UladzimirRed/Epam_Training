@@ -62,7 +62,7 @@ public class ProxyConnection implements Connection {
         try {
             connection.close();
         } catch (SQLException e) {
-            throw new ConnectionPoolException("Couldn't close connection" + e);
+            throw new ConnectionPoolException("Couldn't close connection", e);
         }
     }
 

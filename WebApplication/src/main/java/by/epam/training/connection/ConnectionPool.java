@@ -47,7 +47,7 @@ public enum ConnectionPool {
             try {
                 freeConnections.take().close();   //TODO Change method to reallyClose();
             } catch (SQLException e) {
-                throw new ConnectionPoolException("Couldn't close connection" + e);
+                throw new ConnectionPoolException("Couldn't close connection", e);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -60,7 +60,7 @@ public enum ConnectionPool {
             try {
                 DriverManager.deregisterDriver(driver);
             } catch (SQLException e) {
-                logger.error("Couldn't deregister driver" + e);
+                logger.error("Couldn't deregister driver", e);
             }
         });
 

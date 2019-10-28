@@ -3,13 +3,10 @@ package by.epam.training.dao.impl;
 import by.epam.training.connection.ConnectionPool;
 import by.epam.training.connection.ProxyConnection;
 import by.epam.training.dao.BaseDao;
-
 import by.epam.training.entity.User;
 import by.epam.training.exception.DaoException;
-
-
 import by.epam.training.util.SqlRequest;
-import org.apache.logging.log4j.Level;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -23,36 +20,20 @@ public class UserDaoImpl implements BaseDao<User> {
     private final ConnectionPool pool;
 
     public UserDaoImpl() {
-        pool = ConnectionPool.INSTANCE;
+        pool = ConnectionPool.getInstance();
     }
 
-    public User login(User user) throws DaoException {
+    public User login(String login, String password) throws DaoException {
         ProxyConnection connection = null;
-        try {
-            connection = pool.takeConnection();
-            String login = user.getLogin();
-            String password = user.getPassword();
-            if (userMatches(login, password)) {
-                return findUserByLogin(connection, login);
-            } else {
-                return null;
-            }
-        } finally {
-            pool.releaseConnection(connection);
-        }
-    }
-
-    private boolean userMatches(String login, String password) throws DaoException {
         PreparedStatement preparedStatement = null;
         ResultSet resultSet;
-        ProxyConnection connection = null;
         try {
             connection = pool.takeConnection();
-            preparedStatement = connection.prepareStatement(SqlRequest.CHECK_USER_MATCHES);
+            preparedStatement = connection.prepareStatement(SqlRequest.FIND_PROFILE_BY_LOGIN);
             preparedStatement.setString(1, login);
             preparedStatement.setString(2, password);
             resultSet = preparedStatement.executeQuery();
-            return resultSet.next();
+            return resultSet.next() ? createUserFromQueryResult(resultSet) : null;
         } catch (SQLException e) {
             throw new DaoException();
         } finally {
@@ -61,17 +42,14 @@ public class UserDaoImpl implements BaseDao<User> {
         }
     }
 
-    private User findUserByLogin(ProxyConnection connection, String login) throws DaoException {
+    public boolean userExists(ProxyConnection connection, String login) throws DaoException {
         PreparedStatement preparedStatement = null;
         ResultSet resultSet;
         try {
-            preparedStatement = connection.prepareStatement(SqlRequest.FIND_USER_BY_LOGIN);
+            preparedStatement = connection.prepareStatement(SqlRequest.CHECK_USER_EXISTS);
             preparedStatement.setString(1, login);
             resultSet = preparedStatement.executeQuery();
-            if (resultSet.next()) {
-                return createUserFromQueryResult(resultSet);
-            }
-            return null;
+            return resultSet.next();
         } catch (SQLException e) {
             throw new DaoException(e);
         } finally {

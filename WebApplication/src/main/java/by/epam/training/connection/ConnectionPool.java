@@ -12,29 +12,45 @@ import java.util.ArrayDeque;
 import java.util.Queue;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.locks.ReentrantLock;
 
-public enum ConnectionPool {
-    INSTANCE;
-
-    private static Logger logger = LogManager.getLogger(ConnectionPool.class);
-
+public class ConnectionPool {
+    private static Logger logger = LogManager.getLogger();
+    private static ConnectionPool instance;
     private BlockingQueue<ProxyConnection> freeConnections;
     private Queue<ProxyConnection> givenAwayConnections;
-    private final static int DEFAULT_POOL_SIZE = 32;
-
+    private final static int DEFAULT_POOL_SIZE = 16;
+    private static AtomicBoolean isCreated = new AtomicBoolean(false);
+    private static ReentrantLock lock = new ReentrantLock();
     private static String url;
     private static String user;
     private static String password;
 
-    ConnectionPool() {
+    private ConnectionPool() {
         register();
         initDatabase();
         initPool();
     }
 
+    public static ConnectionPool getInstance() {
+        if (!isCreated.get()) {
+            lock.lock();
+            try {
+                if (instance == null) {
+                    instance = new ConnectionPool();
+                    isCreated.set(true);
+                }
+            } finally {
+                lock.unlock();
+            }
+        }
+        return instance;
+    }
+
     private void register() {
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
+            Class.forName("com.mysql.jdbc.Driver");
         } catch (ClassNotFoundException e) {
             logger.fatal("Couldn't register driver" + e);
 //            throw new RuntimeException("Couldn't register driver", e);

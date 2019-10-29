@@ -27,20 +27,6 @@ public class DbMain {
             String sql = "SELECT id, lastName, phone FROM users";
             ResultSet resultSet = statement.executeQuery(sql);
             List<User> users = new ArrayList<>();
-
-//            resultSet.moveToInsertRow();
-//            resultSet.updateInt(1, 3);
-//            resultSet.updateString(2, "Meleshkevich");
-//            resultSet.updateInt(3, 256000502);
-//            resultSet.insertRow();
-//            resultSet.moveToCurrentRow();
-
-//            while (resultSet.next()) {
-//                int id = resultSet.getInt(1);
-//                String name = resultSet.getString(2);
-//                int number = resultSet.getInt(3);
-//                users.add(new User(id, name, number));
-//            }
             System.out.println(users);
         } catch (SQLException e) {
             e.printStackTrace();
